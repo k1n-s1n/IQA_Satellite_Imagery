@@ -1,0 +1,35 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+
+# ---- Data (raw datasets live in OneDrive, not git) ----
+data/*
+!data/README.md
+!data/samples/
+# satellite rasters anywhere else in the repo
+*.tif
+*.tiff
+*.jp2
+!data/samples/**
+
+# ---- Model weights & experiment outputs ----
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+checkpoints/
+outputs/
+runs/
+wandb/
+
+# ---- Editor / OS ----
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
