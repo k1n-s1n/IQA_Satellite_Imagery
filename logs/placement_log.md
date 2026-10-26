@@ -68,14 +68,14 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Read and break down DiffusionSat.
 - Confirm with Dr Wei whether pre-start hours count, and the logbook format.
 
-## Week 1 — w/c 26 Oct 2026 — Hours: _ / 20
+## Week 1 — w/c 26 Oct 2026 — Hours: 4 / 20
 
 | Date | Task | Hours |
 | --- | --- | --- |
-| Mon 26 Oct | Read Wang et al. (2019), *The great Atlantic Sargassum belt* (Science) | |
-| Mon 26 Oct | Self-directed reading: satellite imaging fundamentals (orbits, resolution/GSD, SAR) | |
-| Mon 26 Oct | Sentinel-2 MSI and constellation; NDVI and how vegetation reflects red/NIR | |
-| Mon 26 Oct | Research Notebook: background notes, Wang et al. entry, resolved one open question | |
+| Mon 26 Oct | Read Wang et al. (2019), *The great Atlantic Sargassum belt* (Science) | 1 |
+| Mon 26 Oct | Self-directed reading: satellite imaging fundamentals (orbits, resolution/GSD, SAR) | 1.5 |
+| Mon 26 Oct | Sentinel-2 MSI and constellation; NDVI and how vegetation reflects red/NIR | 1 |
+| Mon 26 Oct | Research Notebook: background notes, Wang et al. entry, resolved one open question | 0.5 |
 
 **Reflection:**
 - Corrected my own misunderstanding: sargassum is detected by passive optical sensing (it reflects NIR strongly while water absorbs NIR), not by radar penetrating water.
