@@ -67,3 +67,24 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 **Next steps:**
 - Read and break down DiffusionSat.
 - Confirm with Dr Wei whether pre-start hours count, and the logbook format.
+
+## Week 1 — w/c 26 Oct 2026 — Hours: _ / 20
+
+| Date | Task | Hours |
+| --- | --- | --- |
+| Mon 26 Oct | Read Wang et al. (2019), *The great Atlantic Sargassum belt* (Science) | |
+| Mon 26 Oct | Self-directed reading: satellite imaging fundamentals (orbits, resolution/GSD, SAR) | |
+| Mon 26 Oct | Sentinel-2 MSI and constellation; NDVI and how vegetation reflects red/NIR | |
+| Mon 26 Oct | Research Notebook: background notes, Wang et al. entry, resolved one open question | |
+
+**Reflection:**
+- Corrected my own misunderstanding: sargassum is detected by passive optical sensing (it reflects NIR strongly while water absorbs NIR), not by radar penetrating water.
+- This directly affects the research design, because a standard RGB-only diffusion model would not produce the NIR signal that sargassum detection relies on.
+
+**Way forward:**
+- Clarify which Sentinel-2 bands the synthetic images must include.
+
+**Next steps:**
+- Investigate RGB vs multispectral generation and floating-algae indices (FAI/AFAI).
+- Break down DiffusionSat.
+- Thu 29 Oct meeting: confirm logbook format, whether pre-start hours count, and raise open questions.

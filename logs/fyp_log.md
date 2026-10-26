@@ -77,3 +77,24 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Read and break down DiffusionSat in the notebook.
 - Fill in Week 1–2 supervisor feedback in `docs/supervisor_direction.md`.
 - Confirm the markdown logbook format with Dr Wei on Thursday.
+
+## Week 4 — 26 Oct – 1 Nov 2026 (in progress)
+
+**Activities:**
+- **Mon 26 Oct:**
+    - Read Wang et al. (2019), *The great Atlantic Sargassum belt* (Science): since 2011 a recurring sargassum belt has stretched from West Africa to the Gulf of Mexico (about 8,850 km long, over 20 million tonnes in June 2018), mapped from about 19 years of MODIS data. This gives my report its motivation for satellite-based sargassum monitoring.
+    - Self-directed reading on how satellite imagery works: orbits (LEO, geostationary, sun-synchronous), revisit time and constellations, resolution (GSD), and SAR/InSAR.
+    - Sentinel-2 specifics: its MultiSpectral Instrument (MSI) is a passive optical push-broom sensor; constellation status (2A, 2B, 2C).
+    - NDVI and how vegetation reflects light: plants absorb red and reflect near-infrared (NIR).
+
+**Reflection:**
+- My first hypothesis was that sargassum is detected with SAR "seeing through" water. That was wrong: Sentinel-2 is passive optical, and sargassum floats on the surface. It stands out because it reflects NIR strongly while water absorbs NIR.
+- This changes how I see my RGB vs multispectral open question: the key sargassum signal is in NIR, which a standard RGB-only diffusion model would not generate.
+
+**Way forward:**
+- Work out what RGB-only generation means for sargassum detection and which bands my synthetic images need.
+
+**Next steps:**
+- Answer the RGB-vs-NIR question and find out why ocean studies use floating-algae indices (FAI/AFAI) rather than plain NDVI.
+- Read and break down DiffusionSat in the notebook.
+- Prepare talking points for the Thu 29 Oct meeting with Dr Wei.
