@@ -10,6 +10,7 @@ Research tasks, supervisor meetings and outputs. Target: 20 documented hours per
 
 **Reflection:** (what went well, issues/challenges)
 -
+
 **Way forward:**
 -
 **Next steps:**
@@ -21,7 +22,7 @@ Research tasks, supervisor meetings and outputs. Target: 20 documented hours per
 Work done while vetting/authorisation was pending, recorded under the real dates.
 **Hours:** not claimed, pending confirmation with Dr Wei / HR. Estimates are for the record only.
 
-### Week 1 — 6–11 Oct 2026 — Hours (estimate):
+### Week 1 — 6–11 Oct 2026 — Hours (estimate): 3
 
 **Activities:**
 - General background research in the field of satellite imagery, getting familiar with the topic.
@@ -35,7 +36,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 **Next steps:**
 - Read further into sargassum and how it is monitored.
 
-### Week 2 — 12–18 Oct 2026 — Hours (estimate):
+### Week 2 — 12–18 Oct 2026 — Hours (estimate): 2
 
 **Activities:**
 - Further reading on sargassum in the open sea and how it is monitored with satellite imagery.
@@ -49,7 +50,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 **Next steps:**
 - Look at accessible datasets and the standard image quality metrics.
 
-### Week 3 — 19–25 Oct 2026 — Hours (estimate):
+### Week 3 — 19–25 Oct 2026 — Hours (estimate): 5
 
 **Activities:**
 - **Datasets researched:** Copernicus Data Space Ecosystem / Sentinel-2 (primary source of real multispectral imagery) and MARIDA (Sentinel-2 benchmark with a Sargassum class; most directly relevant to my applied case).
@@ -68,7 +69,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Read and break down DiffusionSat.
 - Confirm with Dr Wei whether pre-start hours count, and the logbook format.
 
-## Week 1 — w/c 26 Oct 2026 — Hours: 4 / 20
+## Week 1 — w/c 26 Oct 2026 — Hours: 10 / 20
 
 | Date | Task | Hours |
 | --- | --- | --- |
@@ -76,15 +77,21 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Mon 26 Oct | Self-directed reading: satellite imaging fundamentals (orbits, resolution/GSD, SAR) | 1.5 |
 | Mon 26 Oct | Sentinel-2 MSI and constellation; NDVI and how vegetation reflects red/NIR | 1 |
 | Mon 26 Oct | Research Notebook: background notes, Wang et al. entry, resolved one open question | 0.5 |
+| Wed 28 Oct | RGB vs NIR analysis: identified the Sentinel-2 bands sargassum detection needs (B5–B8A) |0.5 |
+| Wed 28 Oct | Read Hu (2009), Floating Algae Index; mapped it to Sentinel-2 bands (B4, B8A, B11) | 1.5 |
+| Wed 28 Oct | Background research on generative models (autoencoder → VAE → GAN → diffusion) | 3 |
+| Wed 28 Oct | Research Notebook: FAI section, generative-models notes, new open question on mixed band resolutions | 1 |
 
 **Reflection:**
 - Corrected my own misunderstanding: sargassum is detected by passive optical sensing (it reflects NIR strongly while water absorbs NIR), not by radar penetrating water.
 - This directly affects the research design, because a standard RGB-only diffusion model would not produce the NIR signal that sargassum detection relies on.
+- FAI explains why ocean studies avoid plain NDVI: a red–SWIR baseline cancels most of the haze and glint effect. This adds SWIR (B11) to the bands the synthetic images probably need.
+- New design issue: the required bands come at mixed resolutions (10 m and 20 m).
 
 **Way forward:**
-- Clarify which Sentinel-2 bands the synthetic images must include.
+- Raise the band requirements (B4, B8A, B11 + red-edge) and the resolution issue with Dr Wei.
 
 **Next steps:**
-- Investigate RGB vs multispectral generation and floating-algae indices (FAI/AFAI).
-- Break down DiffusionSat.
+- Understand VAEs and Latent Diffusion (how Stable Diffusion works in a VAE latent space).
 - Thu 29 Oct meeting: confirm logbook format, whether pre-start hours count, and raise open questions.
+- Break down DiffusionSat.

@@ -9,6 +9,7 @@ Detailed research notes live in the Research Notebook; this log stays short.
 -
 **Reflection:** (what went well, issues/challenges)
 -
+
 **Way forward:**
 -
 **Next steps:**
@@ -86,15 +87,22 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Self-directed reading on how satellite imagery works: orbits (LEO, geostationary, sun-synchronous), revisit time and constellations, resolution (GSD), and SAR/InSAR.
     - Sentinel-2 specifics: its MultiSpectral Instrument (MSI) is a passive optical push-broom sensor; constellation status (2A, 2B, 2C).
     - NDVI and how vegetation reflects light: plants absorb red and reflect near-infrared (NIR).
+- **Wed 28 Oct:**
+    - Answered my RGB-vs-NIR question: an RGB-only image contains no NIR information at all, so a synthetic RGB image could score well on PSNR/SSIM yet lack the signal sargassum detection depends on. Identified the red-edge (B5–B7) and NIR (B8, B8A) bands as needed.
+    - Read Hu (2009), *A novel ocean color index to detect floating algae in the global oceans* (Remote Sensing of Environment): the Floating Algae Index (FAI) is NIR reflectance minus a linear red–SWIR baseline, which makes it less sensitive to haze, aerosols and sun glint than NDVI. Mapped it to Sentinel-2 bands B4, B8A and B11.
+    - Background reading on generative models (autoencoder → VAE → GAN → diffusion), from IBM, Wikipedia, Medium and GeeksforGeeks articles and the YouTube video *AutoEncoder to Diffusion (For Beginners)*.
 
 **Reflection:**
 - My first hypothesis was that sargassum is detected with SAR "seeing through" water. That was wrong: Sentinel-2 is passive optical, and sargassum floats on the surface. It stands out because it reflects NIR strongly while water absorbs NIR.
 - This changes how I see my RGB vs multispectral open question: the key sargassum signal is in NIR, which a standard RGB-only diffusion model would not generate.
+- FAI: my first explanation of the baseline was wrong (I thought it removed clutter like water vapour and cirrus). Working through a toy example showed me it estimates the water + atmosphere background at NIR and subtracts it.
+- Sargassum detection also relies on SWIR, and the bands I need come at mixed resolutions (10 m and 20 m). I logged this as a new open question.
+- My generative-models summary leans heavily on one video transcript, and I had merged mode collapse with vanishing gradients. I need to rewrite it in my own words and cite the original papers (Kingma & Welling 2013; Goodfellow et al. 2014; Sohl-Dickstein et al. 2015; Ho et al. 2020; Rombach et al. 2022). VAEs haven't clicked for me yet.
 
 **Way forward:**
-- Work out what RGB-only generation means for sargassum detection and which bands my synthetic images need.
+- My synthetic images likely need at least B4, B8A and B11 plus the red-edge bands; how to handle the mixed resolutions is to be decided.
 
 **Next steps:**
-- Answer the RGB-vs-NIR question and find out why ocean studies use floating-algae indices (FAI/AFAI) rather than plain NDVI.
-- Read and break down DiffusionSat in the notebook.
+- Understand VAEs and how Stable Diffusion runs diffusion in a VAE's latent space (Latent Diffusion).
 - Prepare talking points for the Thu 29 Oct meeting with Dr Wei.
+- Read and break down DiffusionSat, including how it handles multispectral data.
