@@ -1,6 +1,6 @@
 # Placement Log — Crocus / AI-INTERVENE
 
-Research tasks, supervisor meetings and outputs. Target: 20 documented hours per week (26 Oct 2026 – 26 Feb 2027).
+Research tasks, supervisor meetings and outputs. Total: 225 documented hours from 26 Oct 2026 to 26 Feb 2027, split into weeks, maximum 20 hours per week (Dr Wei, email 29 Oct 2026).
 
 <!-- Entry template (newest at the bottom)
 ## Week N — w/c DD Mon YYYY — Hours: X / 20
@@ -69,7 +69,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Read and break down DiffusionSat.
 - Confirm with Dr Wei whether pre-start hours count, and the logbook format.
 
-## Week 1 — w/c 26 Oct 2026 — Hours: 10 / 20
+## Week 1 — w/c 26 Oct 2026 — Hours: 13 ( Total so far: 13/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
@@ -81,17 +81,21 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Wed 28 Oct | Read Hu (2009), Floating Algae Index; mapped it to Sentinel-2 bands (B4, B8A, B11) | 1.5 |
 | Wed 28 Oct | Background research on generative models (autoencoder → VAE → GAN → diffusion) | 3 |
 | Wed 28 Oct | Research Notebook: FAI section, generative-models notes, new open question on mixed band resolutions | 1 |
+| Thu 29 Oct | Studied VAEs (latent space, mean/standard deviation, KL divergence) and how Stable Diffusion uses a VAE latent space | 1 |
+| Thu 29 Oct | Reviewed the Research Notebook and prepared meeting talking points | 0.5 |
+| Thu 29 Oct | Supervisor meeting with Dr Wei: multispectral, all 13 bands, higher-resolution option | 1 |
+| Thu 29 Oct | Paired vs unpaired metrics: why PSNR/SSIM need a matching original image | 0.5 |
 
 **Reflection:**
 - Corrected my own misunderstanding: sargassum is detected by passive optical sensing (it reflects NIR strongly while water absorbs NIR), not by radar penetrating water.
 - This directly affects the research design, because a standard RGB-only diffusion model would not produce the NIR signal that sargassum detection relies on.
 - FAI explains why ocean studies avoid plain NDVI: a red–SWIR baseline cancels most of the haze and glint effect. This adds SWIR (B11) to the bands the synthetic images probably need.
 - New design issue: the required bands come at mixed resolutions (10 m and 20 m).
+- 29 Oct: Dr Wei's steer settles the RGB vs multispectral question: all 13 bands, because which bands matter most is something the experiments should show.
 
 **Way forward:**
-- Raise the band requirements (B4, B8A, B11 + red-edge) and the resolution issue with Dr Wei.
+- Work with all 13 Sentinel-2 bands; for the mixed resolutions, focus on the higher-resolution option.
 
 **Next steps:**
-- Understand VAEs and Latent Diffusion (how Stable Diffusion works in a VAE latent space).
-- Thu 29 Oct meeting: confirm logbook format, whether pre-start hours count, and raise open questions.
-- Break down DiffusionSat.
+- Sentinel-2 band table (all bands, wavelengths, resolutions) for Dr Wei.
+- Go through the links Dr Wei sent: the DiffusionSat paper (arXiv 2312.03606), project page and GitHub repository.
