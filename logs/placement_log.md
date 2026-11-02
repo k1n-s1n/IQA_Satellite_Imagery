@@ -99,3 +99,12 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 **Next steps:**
 - Sentinel-2 band table (all bands, wavelengths, resolutions) for Dr Wei.
 - Go through the links Dr Wei sent: the DiffusionSat paper (arXiv 2312.03606), project page and GitHub repository.
+
+## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: _/225)
+
+| Date | Task | Hours |
+| --- | --- | --- |
+| Mon 2 Nov | Paired vs unpaired metrics: why SSIM is paired too; FID (Heusel et al., 2017) as an unpaired distribution metric and its limits for 13-band data | 2 |
+| Mon 2 Nov | Conditioned generation (super-resolution) as a way to create pairs; hallucination risk for sargassum | 1 |
+| Mon 2 Nov | Research Notebook: updated the paired vs unpaired entry | 1 |
+

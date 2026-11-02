@@ -113,3 +113,25 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Build a table of all Sentinel-2 bands with wavelengths and resolutions from the ESA MSI User Guide (requested by Dr Wei; also for my FYP report).
 - Read and break down DiffusionSat (arXiv 2312.03606), go through the links Dr Wei sent, including the DiffusionSat GitHub repository.
 - Continue the paired vs unpaired metrics question (distribution metrics such as FID vs conditioned generation that creates pairs).
+
+## Week 5 — 2–8 Nov 2026 (in progress)
+
+**Activities:**
+- **Mon 2 Nov:**
+    - Continued paired vs unpaired metrics. I'm looking for an unpaired metric, because my generated images won't have a direct real counterpart but I still need a way to judge their accuracy. SSIM compares luminance, contrast and structure, but still against a matching original, so it is paired like PSNR.
+    - FID (Heusel et al., 2017): passes each image through Inception-v3 and compares the mean and covariance of the real and generated feature sets. It scores collections, not single images.
+    - Super-resolution as conditioned generation: shrinking a real high-resolution image myself gives a known original to compare to, which makes PSNR/SSIM valid again.
+
+**Reflection:**
+- I first named SSIM as the unpaired metric; it is paired. I also thought B4/B3/B2 were fed to FID because they matter most for sargassum, but they are used only because Inception was trained on RGB. The bands FAI relies on (red-edge/NIR) go unchecked.
+- FID is limited rather than unviable: a set of synthetic images can score well on RGB statistics while its NIR/red-edge bands are wrong. It can serve as a baseline, which supports the case for domain-specific metrics in my report.
+- Super-resolution has two catches: my own downsampling isn't identical to a real low-resolution sensor, and a diffusion model can invent or erase small sargassum features without much effect on PSNR, because the scene is mostly water.
+
+**Way forward:**
+- Report FID as a baseline alongside domain-specific metrics, and consider a sargassum-specific check (e.g. FAI on the output) for super-resolved images.
+
+**Next steps:**
+- RGB-trained VAE vs 13 bands question.
+- DiffusionSat breakdown, including whether it does super-resolution with multispectral input.
+- Sentinel-2 band table and Wang et al. limitations.
+
