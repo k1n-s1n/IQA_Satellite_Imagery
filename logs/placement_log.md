@@ -100,7 +100,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Sentinel-2 band table (all bands, wavelengths, resolutions) for Dr Wei.
 - Go through the links Dr Wei sent: the DiffusionSat paper (arXiv 2312.03606), project page and GitHub repository.
 
-## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: _/225)
+## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: 4/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
