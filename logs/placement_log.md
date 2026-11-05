@@ -100,11 +100,13 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Sentinel-2 band table (all bands, wavelengths, resolutions) for Dr Wei.
 - Go through the links Dr Wei sent: the DiffusionSat paper (arXiv 2312.03606), project page and GitHub repository.
 
-## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: 17/225)
+## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: 20/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
 | Mon 2 Nov | Paired vs unpaired metrics: why SSIM is paired too; FID (Heusel et al., 2017) as an unpaired distribution metric and its limits for 13-band data | 2 |
 | Mon 2 Nov | Conditioned generation (super-resolution) as a way to create pairs; hallucination risk for sargassum | 1 |
 | Mon 2 Nov | Research Notebook: updated the paired vs unpaired entry | 1 |
+| Tue 3 Nov | Why Stable Diffusion's RGB-trained VAE can't handle 13-band Sentinel-2 input (input-layer mismatch; RGB-learned compression loses NIR contrast); NIR vs thermal infrared | 1 |
+| Tue 3 Nov | Built the Sentinel-2 band table requested by Dr Wei (all 13 bands: wavelength, bandwidth, resolution, relevance to sargassum) from ESA SentiWiki, using S2B values with differences from S2A | 2 |
 
