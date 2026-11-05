@@ -124,19 +124,24 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - **Tue 3 Nov:**
     - Worked out what Stable Diffusion's RGB-trained VAE means for 13 bands. It can't take them at all: its first convolution expects 3 input channels. Even if forced, sargassum and water both look dark in RGB, so the VAE may pack them close together, but they are far apart in NIR, and its training never rewarded keeping that NIR contrast. A 13-band model needs a VAE retrained or fine-tuned on multispectral data.
     - Built the Sentinel-2 band table (Research Notebook) from ESA SentiWiki, S2 Mission: name, central wavelength, bandwidth and resolution for all 13 bands, plus relevance to sargassum. I used Sentinel-2B values (one of the two operational units) and noted each value's difference from 2A in brackets.
+- **Thu 5 Nov:**
+    - Wang et al. (2019) limitations: MODIS pixels are hundreds of metres wide, so isolated patches moving to shore may be missed; clouds block every optical band, so maps have to be composited over longer periods, losing timely detection; the drivers (Amazon discharge, West African upwelling) are proposed, not proven.
+    - Sentinel-2 processing levels ([SentiWiki, S2 Products](https://sentiwiki.copernicus.eu/web/s2-products)): Level-1C is top-of-atmosphere reflectance with 13 bands; Level-2A is surface reflectance after atmospheric correction (made from L1C by Sen2Cor), with 12 bands. B10 is dropped because it sits in a strong water vapour absorption band and only sees high cirrus, not the surface. In L2A only B2, B3, B4 and B8 are native at 10 m.
+    - DiffusionSat (Khanna et al., 2024) first pass: it conditions on metadata (location, GSD, cloud cover, date) instead of captions. It keeps Stable Diffusion 2.1's VAE, so its output is RGB only; multispectral data is used only as input for super-resolution. Its metrics (FID, IS, CLIP score, SSIM, PSNR, LPIPS) are all RGB and none check spectral accuracy.
 
 **Reflection:**
 - I first named SSIM as the unpaired metric; it is paired. I also thought B4/B3/B2 were fed to FID because they matter most for sargassum, but they are used only because Inception was trained on RGB. The bands FAI relies on (red-edge/NIR) go unchecked.
 - FID is limited rather than unviable: a set of synthetic images can score well on RGB statistics while its NIR/red-edge bands are wrong. It can serve as a baseline, which supports the case for domain-specific metrics in my report.
 - 3 Nov: I confused NIR with thermal infrared. NIR is reflected sunlight just past red (B8 ≈ 0.84 µm); thermal is emitted heat (~8–14 µm), and Sentinel-2 has no thermal bands. Plants *reflect* NIR, they don't release it.
 - Band table: the numbers were right, but my relevance column had mistakes. I marked bands as "no relevance" when they matter indirectly (B1, B9, B10 for atmospheric correction and cloud masking), missed that the red-edge bands (B5–B7) are the vegetation signal itself, copied land-only uses (urban, geology, soil), and mixed up the FAI bands (it uses B4, B8A, B11, not B12 or B8).
+- 5 Nov: I'd prefer L2A because, across different dates and places, values reflect the surface more consistently, regardless of changing haze. A model trained on L1C would also learn to generate haze, and my metrics couldn't tell a haze mismatch from a sargassum mismatch. My first reason (L2A avoids compositing) was wrong: atmospheric correction doesn't remove thick cloud.
+- 5 Nov: I predicted correctly that DiffusionSat outputs RGB, because it keeps an RGB-trained VAE. This conflicts with the steer to generate all 13 bands, so it's a decision for Dr Wei.
 - Super-resolution has two catches: my own downsampling isn't identical to a real low-resolution sensor, and a diffusion model can invent or erase small sargassum features without much effect on PSNR, because the scene is mostly water.
 
 **Way forward:**
 - Report FID as a baseline alongside domain-specific metrics, and consider a sargassum-specific check (e.g. FAI on the output) for super-resolved images.
 
 **Next steps:**
-- DiffusionSat breakdown, including how it handles multispectral input and whether it does super-resolution.
-- Wang et al. (2019) limitations.
-- Check whether B10 is dropped from Level-2A products, which would affect the "all 13 bands" decision.
+- Raise with Dr Wei: L1C vs L2A, 10 m, and DiffusionSat's RGB-only output.
+- Continue the DiffusionSat breakdown (method in detail, key results, limitations).
 

@@ -109,4 +109,8 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Mon 2 Nov | Research Notebook: updated the paired vs unpaired entry | 1 |
 | Tue 3 Nov | Why Stable Diffusion's RGB-trained VAE can't handle 13-band Sentinel-2 input (input-layer mismatch; RGB-learned compression loses NIR contrast); NIR vs thermal infrared | 1 |
 | Tue 3 Nov | Built the Sentinel-2 band table requested by Dr Wei (all 13 bands: wavelength, bandwidth, resolution, relevance to sargassum) from ESA SentiWiki, using S2B values with differences from S2A | 2 |
+| Thu 5 Nov | Wang et al. (2019) limitations: MODIS pixel size, cloud gaps and compositing, proposed vs proven drivers | 1 |
+| Thu 5 Nov | Sentinel-2 processing levels (L1C vs L2A): B10 dropped from L2A, only 4 native 10 m bands; proposed L2A | 1 |
+| Thu 5 Nov | DiffusionSat first pass: problem, metadata conditioning, RGB-only output, metrics used | 1 |
+| Thu 5 Nov | Prepared supervisor meeting talking points | 0.5 |
 
