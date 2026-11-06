@@ -128,6 +128,9 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Wang et al. (2019) limitations: MODIS pixels are hundreds of metres wide, so isolated patches moving to shore may be missed; clouds block every optical band, so maps have to be composited over longer periods, losing timely detection; the drivers (Amazon discharge, West African upwelling) are proposed, not proven.
     - Sentinel-2 processing levels ([SentiWiki, S2 Products](https://sentiwiki.copernicus.eu/web/s2-products)): Level-1C is top-of-atmosphere reflectance with 13 bands; Level-2A is surface reflectance after atmospheric correction (made from L1C by Sen2Cor), with 12 bands. B10 is dropped because it sits in a strong water vapour absorption band and only sees high cirrus, not the surface. In L2A only B2, B3, B4 and B8 are native at 10 m.
     - DiffusionSat (Khanna et al., 2024) first pass: it conditions on metadata (location, GSD, cloud cover, date) instead of captions. It keeps Stable Diffusion 2.1's VAE, so its output is RGB only; multispectral data is used only as input for super-resolution. Its metrics (FID, IS, CLIP score, SSIM, PSNR, LPIPS) are all RGB and none check spectral accuracy.
+- **Fri 6 Nov:**
+    - DiffusionSat metadata conditioning: numbers can't go in the text prompt because the text encoder has no idea of numeric distance, so each value is turned into a sinusoidal embedding (like the timestep embedding), passed through its own MLP and added to the timestep embedding (Khanna et al., 2024, Appendix A.2).
+    - Relevance: latitude/longitude and date matter most for sargassum (where and when it appears); GSD adds nothing if all images are Sentinel-2 at 10 m. Idea for Phase 4: use cloud cover to generate mostly clear images plus a realistic share of cloudy ones.
 
 **Reflection:**
 - I first named SSIM as the unpaired metric; it is paired. I also thought B4/B3/B2 were fed to FID because they matter most for sargassum, but they are used only because Inception was trained on RGB. The bands FAI relies on (red-edge/NIR) go unchecked.
@@ -136,12 +139,14 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Band table: the numbers were right, but my relevance column had mistakes. I marked bands as "no relevance" when they matter indirectly (B1, B9, B10 for atmospheric correction and cloud masking), missed that the red-edge bands (B5–B7) are the vegetation signal itself, copied land-only uses (urban, geology, soil), and mixed up the FAI bands (it uses B4, B8A, B11, not B12 or B8).
 - 5 Nov: I'd prefer L2A because, across different dates and places, values reflect the surface more consistently, regardless of changing haze. A model trained on L1C would also learn to generate haze, and my metrics couldn't tell a haze mismatch from a sargassum mismatch. My first reason (L2A avoids compositing) was wrong: atmospheric correction doesn't remove thick cloud.
 - 5 Nov: I predicted correctly that DiffusionSat outputs RGB, because it keeps an RGB-trained VAE. This conflicts with the steer to generate all 13 bands, so it's a decision for Dr Wei.
+- 6 Nov: I mixed up cloud cover with haze. Haze is a thin layer that L2A corrects even on clear days; thick cloud hides the surface and L2A can only flag it. A detector trained only on cloud-free images may mistake cloud shadows for sargassum or miss sargassum under thin cloud.
 - Super-resolution has two catches: my own downsampling isn't identical to a real low-resolution sensor, and a diffusion model can invent or erase small sargassum features without much effect on PSNR, because the scene is mostly water.
 
 **Way forward:**
 - Report FID as a baseline alongside domain-specific metrics, and consider a sargassum-specific check (e.g. FAI on the output) for super-resolved images.
 
 **Next steps:**
+- Thu 5 Nov supervisor meeting was cancelled because of a clashing departmental meeting. Dr Wei asked for a paragraph summarising my progress, with any questions by email.
 - Raise with Dr Wei: L1C vs L2A, 10 m, and DiffusionSat's RGB-only output.
 - Continue the DiffusionSat breakdown (method in detail, key results, limitations).
 
