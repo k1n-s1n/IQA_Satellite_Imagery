@@ -150,3 +150,29 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Raise with Dr Wei: L1C vs L2A, 10 m, and DiffusionSat's RGB-only output.
 - Continue the DiffusionSat breakdown (method in detail, key results, limitations).
 
+## Week 6 — 9–15 Nov 2026 (in progress)
+
+**Activities:**
+- **Mon 9 Nov:**
+    - DiffusionSat image conditioning: to make the output follow a specific real scene, a corresponding image is input alongside the metadata. A ControlNet-style module (Zhang et al., 2023) trains a copy of the U-Net encoder on the guiding image while the original stays frozen. DiffusionSat's 3D version takes several images of the same place on different dates; it is order-invariant, but each image's date metadata still carries the timeline.
+    - DiffusionSat results: on fMoW super-resolution (Table 2), DBPN wins PSNR and MSE while DiffusionSat wins SSIM and LPIPS; on Texas housing (Table 3), STSR wins SSIM and PSNR while DiffusionSat wins LPIPS. The authors note PSNR/SSIM favour blurriness over sharp detail.
+- **Tue 10 Nov:**
+    - Worked out why every model scores low on fMoW super-resolution: the resolution gap is larger (Sentinel-2 10–60 m to fMoW 0.3–1.5 m, dataset from Cong et al., 2022, vs 10× for Texas), and the Texas task also gets a high-resolution image of the same place at another time, so the model can copy the layout instead of inventing all the detail.
+    - Dr Wei replied to my progress email: the three questions will be decided at the next meeting, and in general we should generate the same data format as Sentinel-2.
+    - DiffusionSat limitations for my project: RGB-only output lacks the multispectral data needed for sargassum; none of its metrics check spectral accuracy; temporal generation can't predict wind-driven drift, so it can hallucinate patches in the wrong place.
+
+**Reflection:**
+- If Stable Diffusion were fully retrained on one narrow task, it may forget the general skills it learned before (catastrophic forgetting), and small paired datasets risk overfitting, which is why the original network is frozen.
+- Multiple dates help because a clear date shows sargassum that a cloudy one hides, and a sequence shows where it is headed and whether its density is increasing. But generating a plausible future image is not the same as physically forecasting drift.
+- I first read the wrong results table (Table 3 instead of Table 2) and wrote "highest LPIPS" when lower is better. The main takeaway: which model "wins" depends on the metric, because pixel-error metrics reward safe, blurry outputs. This is a direct argument for my project.
+
+- I first thought the Texas model was peeking ahead and cheating; it isn't, that's the task design. Scores from different tasks aren't comparable, even with the same metric.
+- My reading of Dr Wei's steer is multispectral output with Sentinel-2's bands and resolutions, which would mean DiffusionSat's RGB-only output isn't enough as it is. To confirm at the next meeting.
+
+**Way forward:**
+- Treat PSNR/SSIM with caution in my evaluation, and include a perceptual metric (e.g. LPIPS) alongside domain-specific ones.
+
+**Next steps:**
+- Check what limitations the DiffusionSat authors themselves admit, and look at the GitHub repository.
+- Process Dr Wei's reply to my progress email.
+

@@ -100,7 +100,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 - Sentinel-2 band table (all bands, wavelengths, resolutions) for Dr Wei.
 - Go through the links Dr Wei sent: the DiffusionSat paper (arXiv 2312.03606), project page and GitHub repository.
 
-## Week 2 — w/c 2 Nov 2026 — Hours: _ ( Total so far: 26/225)
+## Week 2 — w/c 2 Nov 2026 — Hours: 13 ( Total so far: 26/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
@@ -116,3 +116,11 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 6 Nov | Drafted progress summary and questions email to Dr Wei (meeting cancelled) | 0.2 |
 | Fri 6 Nov | DiffusionSat method: metadata conditioning via sinusoidal embeddings; which metadata matters for sargassum; cloud cover idea for Phase 4 | 1.8 |
 
+## Week 3 — w/c 9 Nov 2026 — Hours: 6 ( Total so far: _/225)
+
+| Date | Task | Hours |
+| --- | --- | --- |
+| Mon 9 Nov | DiffusionSat method: ControlNet-style image conditioning, catastrophic forgetting, 3D (multi-date) conditioning and order invariance | 1 |
+| Mon 9 Nov | DiffusionSat key results: super-resolution tables (fMoW, Texas housing), LPIPS, why PSNR/SSIM favour blurriness | 1 |
+| Mon 9 Nov | Research Notebook: DiffusionSat method and results, reading queue | 2 |
+| Tue 10 Nov | DiffusionSat results: why every model scores low on fMoW super-resolution (resolution gap; Texas task has a high-res reference); DiffusionSat limitations for my project; processed Dr Wei's email reply | 2 |

@@ -39,3 +39,8 @@
 - **Email (morning):** the log organisation looks good. List all Sentinel-2 bands with their wavelengths and resolutions in a table (can also go in my FYP report). Sent the DiffusionSat paper (arXiv 2312.03606) and project page as help for generating satellite images with Stable Diffusion. Placement total is 225 hours, split into weeks from 26 Oct 2026 to 26 Feb 2027, maximum 20 hours per week.
 - **Meeting:** generate multispectral, not RGB, using all 13 bands, since we don't yet know which bands contribute more. For mixed resolutions, focus on the higher-resolution option (my reading: 10 m; to confirm at the next meeting).
 - **Next steps agreed:** go through the links she sent, including the DiffusionSat GitHub repository.
+
+### Week 5 — Thu 5 Nov 2026 (meeting cancelled)
+- Cancelled because of a clashing departmental meeting. Dr Wei asked for a paragraph summarising my progress, with any questions by email.
+- **Questions I sent:** (1) DiffusionSat only outputs RGB: adapt it for multispectral output, or use it as an RGB baseline alongside a multispectral approach? (2) Use Level-2A rather than Level-1C (B10 is not in L2A, leaving 12 bands)? (3) Does "higher resolution" mean 10 m?
+- **Reply (received by Tue 10 Nov):** the three questions will be discussed and decided at the next meeting. In general, we shall generate the same data format as that from Sentinel-2 (my reading: multispectral output with Sentinel-2's bands and resolutions; to confirm).
