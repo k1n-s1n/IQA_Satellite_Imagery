@@ -161,6 +161,12 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Dr Wei replied to my progress email: the three questions will be decided at the next meeting, and in general we should generate the same data format as Sentinel-2.
     - DiffusionSat limitations for my project: RGB-only output lacks the multispectral data needed for sargassum; none of its metrics check spectral accuracy; temporal generation can't predict wind-driven drift, so it can hallucinate patches in the wrong place.
 
+- **Wed 11 Nov:**
+    - DiffusionSat limitations the authors admit (Section 6, Appendix A.4): it can hallucinate details on inverse problems (super-resolution, temporal prediction, in-painting); future work on faster sampling, larger and more diverse datasets, and testing synthetic data to augment discriminative methods, which is what my Phase 4 tests.
+    - Appendix A.4 geographical bias caveats: FID/LPIPS used for lack of better alternatives; FID depends on sample size, and regions like Africa have few images, so even scores across regions don't prove the model is unbiased; only one angle of bias explored.
+    - Decided to evaluate per region (stratified) with per-region uncertainty, since the sargassum belt runs from West Africa to the Caribbean and West Africa may be thin on data.
+    - Reviewed the timeline: Phase 1 has run long, and all phases need to finish by 26 Feb (placement end), not the PID plan. Aim to wrap Phase 1 around 20 Nov.
+
 **Reflection:**
 - If Stable Diffusion were fully retrained on one narrow task, it may forget the general skills it learned before (catastrophic forgetting), and small paired datasets risk overfitting, which is why the original network is frozen.
 - Multiple dates help because a clear date shows sargassum that a cloudy one hides, and a sequence shows where it is headed and whether its density is increasing. But generating a plausible future image is not the same as physically forecasting drift.
@@ -169,10 +175,14 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - I first thought the Texas model was peeking ahead and cheating; it isn't, that's the task design. Scores from different tasks aren't comparable, even with the same metric.
 - My reading of Dr Wei's steer is multispectral output with Sentinel-2's bands and resolutions, which would mean DiffusionSat's RGB-only output isn't enough as it is. To confirm at the next meeting.
 
+- I first named denoising as an inverse problem; in this paper denoising is how every output is generated, while the inverse problems are tasks that reconstruct an unseen truth from incomplete input. For sargassum, a hallucinated patch is wrong data and, in Phase 4, label noise.
+- I misread the FID sample-size caveat at first: a region with few images has a less reliable score, so an even score can't rule out bias. It doesn't prove bias exists either.
+
 **Way forward:**
 - Treat PSNR/SSIM with caution in my evaluation, and include a perceptual metric (e.g. LPIPS) alongside domain-specific ones.
+- Report results per region with uncertainty, not one overall score; revisit a balanced test set at Phase 2.
 
 **Next steps:**
-- Check what limitations the DiffusionSat authors themselves admit, and look at the GitHub repository.
-- Process Dr Wei's reply to my progress email.
+- Skim the DiffusionSat GitHub README (checkpoints, licence, training script, hardware) and write my take/reject/test line.
+- Prepare for the supervisor meeting.
 
