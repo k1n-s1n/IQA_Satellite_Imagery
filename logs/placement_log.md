@@ -116,7 +116,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 6 Nov | Drafted progress summary and questions email to Dr Wei (meeting cancelled) | 0.2 |
 | Fri 6 Nov | DiffusionSat method: metadata conditioning via sinusoidal embeddings; which metadata matters for sargassum; cloud cover idea for Phase 4 | 1.8 |
 
-## Week 3 — w/c 9 Nov 2026 — Hours: 9 ( Total so far: _/225)
+## Week 3 — w/c 9 Nov 2026 — Hours: 15 ( Total so far: 41/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
@@ -126,3 +126,10 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Tue 10 Nov | DiffusionSat results: why every model scores low on fMoW super-resolution (resolution gap; Texas task has a high-res reference); DiffusionSat limitations for my project; processed Dr Wei's email reply | 2 |
 | Wed 11 Nov | DiffusionSat: limitations the authors admit (Section 6; Appendix A.4 geographical bias); inverse problems and hallucination risk for sargassum; decided on per-region evaluation with uncertainty; reviewed phase timeline against the 26 Feb deadline | 2 |
 | Wed 11 Nov | Research Notebook: DiffusionSat limitations and relevance, decisions log, reading queue (KID) | 1 |
+| Thu 12 Nov | DiffusionSat GitHub repo check (checkpoints, licence, training scripts, hardware) and "take" verdict; corrected my understanding: multispectral data only enters as ControlNet conditioning, outputs stay RGB because of the RGB VAE | 1 |
+| Thu 12 Nov | Supervisor meeting prep: findings, questions and decisions list | 1 |
+| Thu 12 Nov | Supervisor meeting with Dr Wei: RGB first, then add channels; high-GPU university computers for compute; get more sargassum images and report how many I have; Sentinel-2 own dataset later; DiffusionSat running first | 1 |
+| Fri 13 Nov | Downloaded MARIDA (v1.0.0, 4.5 GB, 63 scenes, 1,381 patches) and inspected its structure (patches, class/confidence masks, splits, labels mapping); verified class codes against the MARIDA README | 0.5 |
+| Fri 13 Nov | Wrote `scripts/count_sargassum.py` and counted sargassum for Dr Wei: 114 of 1,381 patches (49 dense, 106 sparse) from 20 of 63 scenes | 1 |
+| Fri 13 Nov | Research Notebook: reviewed for sharing with Dr Wei (first person, answered questions updated) | 0.5 |
+| Fri 13 Nov | Extended `count_sargassum.py` with pixel counts from the class masks: 5,154 sargassum pixels (2,797 dense, 2,357 sparse), ~45 per sargassum patch; only ~0.9% of all pixels are labelled | 1 |

@@ -167,6 +167,17 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Decided to evaluate per region (stratified) with per-region uncertainty, since the sargassum belt runs from West Africa to the Caribbean and West Africa may be thin on data.
     - Reviewed the timeline: Phase 1 has run long, and all phases need to finish by 26 Feb (placement end), not the PID plan. Aim to wrap Phase 1 around 20 Nov.
 
+- **Thu 12 Nov:**
+    - DiffusionSat GitHub: Apache-2.0 code with training scripts and Zenodo checkpoints (512 and 256 single-image, Texas and fMoW super-resolution ControlNets); no stated GPU requirements. Verdict: take it as my base model.
+    - Corrected my understanding: DiffusionSat doesn't take multispectral data in general. It only appears as a ControlNet conditioning input; generated images live in Stable Diffusion's RGB VAE latent space, so outputs are RGB.
+    - Supervisor meeting: RGB first, then extend to more channels (NIR etc.) once it works; use the high-GPU university computers; gather more sargassum images; Sentinel-2 own dataset is a later priority. Going with L2A (12 bands), my decision.
+
+- **Fri 13 Nov:**
+    - Downloaded MARIDA (v1.0.0) and inspected it: 63 scenes, 1,381 patches of 256x256 with class and confidence masks, train/val/test splits (694/328/359) and a per-patch multi-label mapping.
+    - Wrote `scripts/count_sargassum.py` (patch level, from `labels_mapping.txt`): 114 patches contain sargassum (49 dense, 106 sparse, 41 both), from 20 scenes; 61 train, 27 val, 26 test. Most come from Sentinel-2 tiles 16P/16Q, which I read as the western Caribbean / Gulf of Honduras (to verify); none from West Africa.
+    - Added pixel counts (`--pixels`, reads the `_cl.tif` masks with rasterio): 5,154 sargassum pixels in total (2,797 dense, 2,357 sparse), about 45 per sargassum patch, matching MARIDA's published Table 1. Only 837,377 of 90.5 million pixels (~0.9%) are labelled.
+    - Reviewed my Research Notebook so it can be shared with Dr Wei.
+
 **Reflection:**
 - If Stable Diffusion were fully retrained on one narrow task, it may forget the general skills it learned before (catastrophic forgetting), and small paired datasets risk overfitting, which is why the original network is frozen.
 - Multiple dates help because a clear date shows sargassum that a cloudy one hides, and a sequence shows where it is headed and whether its density is increasing. But generating a plausible future image is not the same as physically forecasting drift.
@@ -178,11 +189,15 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - I first named denoising as an inverse problem; in this paper denoising is how every output is generated, while the inverse problems are tasks that reconstruct an unseen truth from incomplete input. For sargassum, a hallucinated patch is wrong data and, in Phase 4, label noise.
 - I misread the FID sample-size caveat at first: a region with few images has a less reliable score, so an even score can't rule out bias. It doesn't prove bias exists either.
 
+- Patch counts overstate how much sargassum data I have: sargassum is tiny compared with a 256x256 patch (65,536 pixels), so even if it appears in 114 patches it may not amount to enough data. For Phase 4 this is class imbalance, so sargassum-class IoU/F1 matter more than overall accuracy.
+- Only ~0.9% of MARIDA pixels are labelled, and unlabelled is not the same as water: there may be sargassum in those pixels, so treating them as "not sargassum" would teach the model that sargassum is water (label noise). In Phase 4, unlabelled pixels should be excluded from the loss (e.g. an ignore index).
+
 **Way forward:**
 - Treat PSNR/SSIM with caution in my evaluation, and include a perceptual metric (e.g. LPIPS) alongside domain-specific ones.
 - Report results per region with uncertainty, not one overall score; revisit a balanced test set at Phase 2.
+- Build the pipeline RGB-first, then extend to multispectral channels, so I have a working baseline before the harder VAE problem.
 
 **Next steps:**
-- Skim the DiffusionSat GitHub README (checkpoints, licence, training script, hardware) and write my take/reject/test line.
-- Prepare for the supervisor meeting.
-
+- Send Dr Wei the MARIDA sargassum counts and share the Research Notebook.
+- Set up the DiffusionSat environment on the high-GPU university computers and run the pretrained inference notebook.
+- Finish the metrics shortlist to close Phase 1 (~20 Nov).

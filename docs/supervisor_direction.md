@@ -44,3 +44,13 @@
 - Cancelled because of a clashing departmental meeting. Dr Wei asked for a paragraph summarising my progress, with any questions by email.
 - **Questions I sent:** (1) DiffusionSat only outputs RGB: adapt it for multispectral output, or use it as an RGB baseline alongside a multispectral approach? (2) Use Level-2A rather than Level-1C (B10 is not in L2A, leaving 12 bands)? (3) Does "higher resolution" mean 10 m?
 - **Reply (received by Tue 10 Nov):** the three questions will be discussed and decided at the next meeting. In general, we shall generate the same data format as that from Sentinel-2 (my reading: multispectral output with Sentinel-2's bands and resolutions; to confirm).
+
+### Week 6 — Thu 12 Nov 2026
+- **Multispectral route:** start with RGB. Once DiffusionSat works for RGB, try adding channels (NIR etc.).
+- **Compute:** I can use the high-GPU university computers.
+- **Data:** more sargassum images could improve training, so try to get more. Dr Wei wants to know how many sargassum images I have from the datasets I've found so far.
+- **Own dataset:** access the Sentinel-2 repository (original data) to generate our own datasets. Not the first priority.
+- **First priority:** get the DiffusionSat model running.
+- **Admin:** update my hours weekly on the Campus Jobs timesheet.
+- **Not raised:** L2A vs L1C (I'm going with L2A, 12 bands; my decision, not confirmed with her) and whether "higher resolution" means 10 m.
+
