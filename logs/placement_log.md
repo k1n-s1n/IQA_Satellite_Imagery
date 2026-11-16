@@ -133,3 +133,12 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 13 Nov | Wrote `scripts/count_sargassum.py` and counted sargassum for Dr Wei: 114 of 1,381 patches (49 dense, 106 sparse) from 20 of 63 scenes | 1 |
 | Fri 13 Nov | Research Notebook: reviewed for sharing with Dr Wei (first person, answered questions updated) | 0.5 |
 | Fri 13 Nov | Extended `count_sargassum.py` with pixel counts from the class masks: 5,154 sargassum pixels (2,797 dense, 2,357 sparse), ~45 per sargassum patch; only ~0.9% of all pixels are labelled | 1 |
+
+## Week 4 — w/c 16 Nov 2026 — Hours: _ ( Total so far: _/225)
+
+| Date | Task | Hours |
+| --- | --- | --- |
+| Mon 16 Nov | Metric shortlist: framework (pixel/structure, perceptual, distribution, domain-specific, task-based); RGB-bound (FID, KID, LPIPS) vs band-agnostic (PSNR, SSIM) metrics; Spectral Angle Mapper and an unpaired class-mean adaptation | 1 |
+| Mon 16 Nov | Metric shortlist: FAI distribution metric (Wasserstein distance), radially averaged power spectrum (checked against Durall et al., 2020, Fig. 5), edge integrity, precision/recall, downstream segmentation | 1 |
+| Mon 16 Nov | Research Notebook: Metric shortlist section and table (10 metrics) | 1 |
+

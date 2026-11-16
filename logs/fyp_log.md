@@ -114,7 +114,7 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Read and break down DiffusionSat (arXiv 2312.03606), go through the links Dr Wei sent, including the DiffusionSat GitHub repository.
 - Continue the paired vs unpaired metrics question (distribution metrics such as FID vs conditioned generation that creates pairs).
 
-## Week 5 — 2–8 Nov 2026 (in progress)
+## Week 5 — 2–8 Nov 2026
 
 **Activities:**
 - **Mon 2 Nov:**
@@ -150,7 +150,7 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Raise with Dr Wei: L1C vs L2A, 10 m, and DiffusionSat's RGB-only output.
 - Continue the DiffusionSat breakdown (method in detail, key results, limitations).
 
-## Week 6 — 9–15 Nov 2026 (in progress)
+## Week 6 — 9–15 Nov 2026
 
 **Activities:**
 - **Mon 9 Nov:**
@@ -201,3 +201,26 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Send Dr Wei the MARIDA sargassum counts and share the Research Notebook.
 - Set up the DiffusionSat environment on the high-GPU university computers and run the pretrained inference notebook.
 - Finish the metrics shortlist to close Phase 1 (~20 Nov).
+
+## Week 7 — 16–22 Nov 2026 (in progress)
+
+**Activities:**
+- **Mon 16 Nov:**
+    - Built my metric shortlist (Research Notebook), grouped into five families: pixel/structure (PSNR, SSIM), perceptual (LPIPS), distribution (FID, KID, precision/recall), domain-specific (Spectral Angle Mapper, FAI distribution, radially averaged power spectrum, edge integrity) and task-based (Phase 4 segmentation IoU/F1).
+    - FID, KID, LPIPS and precision/recall are RGB-bound because their pretrained networks expect 3 channels; PSNR and SSIM can be computed per band. In the RGB phase, FAI is impossible and SAM is only a weak check.
+    - My own adaptations for unpaired data (not established metrics): SAM on class-mean spectra, and FAI histograms compared with the Wasserstein distance plus the sargassum–water FAI gap.
+    - Checked the power-spectrum idea against Durall et al. (2020), Fig. 5: transposed convolutions add high-frequency noise, interpolation-based upsampling lacks high frequencies.
+
+**Reflection:**
+- I first thought SAM is just as useful with 3 bands; it still computes, but on RGB it only measures hue and misses the NIR/red-edge signal that separates sargassum from water.
+- "Spectral" means wavelength bands in remote sensing, while a Fourier power spectrum is about spatial frequency (coarse vs fine detail); I need to keep these apart in my report.
+- An edge detector (Sobel, Canny) is a fixed filter used for evaluation after generation, not something that learns. Its advantage over the power spectrum is that it is local, so it can be restricted to sargassum regions.
+- High precision with low recall would mean realistic but narrow synthetic data, which adds little variety for Phase 4 augmentation.
+
+**Way forward:**
+- Use the band-agnostic and spatial metrics (PSNR, SSIM, power spectrum, edge integrity) plus FID/KID/LPIPS in the RGB phase; add SAM and FAI once NIR/SWIR are generated.
+
+**Next steps:**
+- Prepare for running DiffusionSat on Wednesday: walk through the README setup and the single-image notebook, download the 256x256 checkpoint and check its licence, write a setup checklist.
+- Find out the university GPU computers' OS, GPU/VRAM, whether conda can be installed without admin rights, and whether files persist between sessions.
+
