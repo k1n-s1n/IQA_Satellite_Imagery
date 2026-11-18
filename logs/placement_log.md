@@ -141,4 +141,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Mon 16 Nov | Metric shortlist: framework (pixel/structure, perceptual, distribution, domain-specific, task-based); RGB-bound (FID, KID, LPIPS) vs band-agnostic (PSNR, SSIM) metrics; Spectral Angle Mapper and an unpaired class-mean adaptation | 1 |
 | Mon 16 Nov | Metric shortlist: FAI distribution metric (Wasserstein distance), radially averaged power spectrum (checked against Durall et al., 2020, Fig. 5), edge integrity, precision/recall, downstream segmentation | 1 |
 | Mon 16 Nov | Research Notebook: Metric shortlist section and table (10 metrics) | 1 |
+| Wed 18 Nov | GPU access: emailed Prof Xia Hong (cc Dr Wei) and Dr Todd Jones; checked csgitlab CI runners (no GPU runners; the only instance runner is for coursework with a 10-minute job limit) | |
+| Wed 18 Nov | Reviewed the CS compute wiki: desktop GPU specs, RACC2 GPU partitions (gpuscavenger, csgpus), storage options; Dr Jones's advice to start on desktops and log performance metrics before requesting RACC2 | |
+| Wed 18 Nov | Checked a high-GPU university desktop (NVIDIA RTX A4000 16 GB, i7-13700, 32 GB RAM, Windows 11) and Anaconda (Python 3.11.7) via AppsAnywhere; decided to start DiffusionSat setup there on Windows | |
 

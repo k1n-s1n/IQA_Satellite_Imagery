@@ -210,6 +210,9 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - FID, KID, LPIPS and precision/recall are RGB-bound because their pretrained networks expect 3 channels; PSNR and SSIM can be computed per band. In the RGB phase, FAI is impossible and SAM is only a weak check.
     - My own adaptations for unpaired data (not established metrics): SAM on class-mean spectra, and FAI histograms compared with the Wasserstein distance plus the sargassum–water FAI gap.
     - Checked the power-spectrum idea against Durall et al. (2020), Fig. 5: transposed convolutions add high-frequency noise, interpolation-based upsampling lacks high frequencies.
+- **Wed 18 Nov:**
+    - Sorted out compute for Phase 2: there are no GPU-enabled GitLab runners, and the RACC2 GPUs are oversubscribed, so I'm starting on a high-GPU university desktop (NVIDIA RTX A4000, 16 GB VRAM) and will log performance (time per image, peak VRAM) to justify moving to bigger hardware if needed.
+    - Decided to set up on Windows first to learn the process, using the university's Anaconda (Python 3.11.7).
 
 **Reflection:**
 - I first thought SAM is just as useful with 3 bands; it still computes, but on RGB it only measures hue and misses the NIR/red-edge signal that separates sargassum from water.
@@ -219,6 +222,7 @@ Detailed research notes live in the Research Notebook; this log stays short.
 
 **Way forward:**
 - Use the band-agnostic and spatial metrics (PSNR, SSIM, power spectrum, edge integrity) plus FID/KID/LPIPS in the RGB phase; add SAM and FAI once NIR/SWIR are generated.
+- Record exact package versions while setting up, so the environment can be rebuilt on Linux later; my code moves across through git, but the environment doesn't.
 
 **Next steps:**
 - Prepare for running DiffusionSat on Wednesday: walk through the README setup and the single-image notebook, download the 256x256 checkpoint and check its licence, write a setup checklist.
