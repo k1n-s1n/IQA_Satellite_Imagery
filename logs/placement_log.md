@@ -141,7 +141,11 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Mon 16 Nov | Metric shortlist: framework (pixel/structure, perceptual, distribution, domain-specific, task-based); RGB-bound (FID, KID, LPIPS) vs band-agnostic (PSNR, SSIM) metrics; Spectral Angle Mapper and an unpaired class-mean adaptation | 1 |
 | Mon 16 Nov | Metric shortlist: FAI distribution metric (Wasserstein distance), radially averaged power spectrum (checked against Durall et al., 2020, Fig. 5), edge integrity, precision/recall, downstream segmentation | 1 |
 | Mon 16 Nov | Research Notebook: Metric shortlist section and table (10 metrics) | 1 |
-| Wed 18 Nov | GPU access: emailed Prof Xia Hong (cc Dr Wei) and Dr Todd Jones; checked csgitlab CI runners (no GPU runners; the only instance runner is for coursework with a 10-minute job limit) | |
-| Wed 18 Nov | Reviewed the CS compute wiki: desktop GPU specs, RACC2 GPU partitions (gpuscavenger, csgpus), storage options; Dr Jones's advice to start on desktops and log performance metrics before requesting RACC2 | |
-| Wed 18 Nov | Checked a high-GPU university desktop (NVIDIA RTX A4000 16 GB, i7-13700, 32 GB RAM, Windows 11) and Anaconda (Python 3.11.7) via AppsAnywhere; decided to start DiffusionSat setup there on Windows | |
+| Wed 18 Nov | GPU access: emailed Prof Xia Hong (cc Dr Wei) and Dr Todd Jones; checked csgitlab CI runners (no GPU runners; the only instance runner is for coursework with a 10-minute job limit) | 0.5 |
+| Wed 18 Nov | Reviewed the CS compute wiki: desktop GPU specs, RACC2 GPU partitions (gpuscavenger, csgpus), storage options; Dr Jones's advice to start on desktops and log performance metrics before requesting RACC2 | 1 |
+| Wed 18 Nov | Checked a high-GPU university desktop (NVIDIA RTX A4000 16 GB, i7-13700, 32 GB RAM, Windows 11) and Anaconda (Python 3.11.7) via AppsAnywhere; decided to start DiffusionSat setup there on Windows | 0.5 |
+| Thu 19 Nov | Lab PC storage (D: too small, used a local C: folder); downloaded the DiffusionSat 256x256 checkpoint from Zenodo (30 GB, CC BY 4.0; 100k and 150k step checkpoints plus optimizer states) and inspected its structure | 1 |
+| Thu 19 Nov | DiffusionSat environment: conda env (Python 3.10) kept outside my user profile, PyTorch 2.2.2+cu121 with GPU verified, DiffusionSat and its requirements installed; fixed two version conflicts (numpy<2, huggingface_hub<0.26) | 1 |
+| Thu 19 Nov | Ran the single-image notebook: first generated image (256x256, 20 steps, seed 42, checkpoint-150000): 1.6 s per image, 2.81 GB peak VRAM | 2 |
+| Thu 19 Nov | Supervisor meeting prep: findings, open questions and decisions | 1 |
 

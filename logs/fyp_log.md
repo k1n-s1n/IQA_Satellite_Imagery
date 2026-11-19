@@ -213,18 +213,25 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - **Wed 18 Nov:**
     - Sorted out compute for Phase 2: there are no GPU-enabled GitLab runners, and the RACC2 GPUs are oversubscribed, so I'm starting on a high-GPU university desktop (NVIDIA RTX A4000, 16 GB VRAM) and will log performance (time per image, peak VRAM) to justify moving to bigger hardware if needed.
     - Decided to set up on Windows first to learn the process, using the university's Anaconda (Python 3.11.7).
+- **Thu 19 Nov:**
+    - Downloaded the DiffusionSat 256x256 checkpoint (Zenodo, CC BY 4.0) and set up a conda environment (Python 3.10, PyTorch 2.2.2 for CUDA 12.1) on a high-GPU university desktop (RTX A4000, 16 GB).
+    - Needed two version pins to get the 2023 code running: numpy<2 (PyTorch 2.2.2 was built against NumPy 1.x) and huggingface_hub<0.26 (DiffusionSat's bundled diffusers 0.17 uses a function removed in later versions).
+    - Generated my first DiffusionSat image with the authors' single-image notebook (256x256, 20 steps, fixed seed 42, checkpoint-150000): 1.6 s per image and 2.81 GB peak VRAM.
 
 **Reflection:**
 - I first thought SAM is just as useful with 3 bands; it still computes, but on RGB it only measures hue and misses the NIR/red-edge signal that separates sargassum from water.
 - "Spectral" means wavelength bands in remote sensing, while a Fourier power spectrum is about spatial frequency (coarse vs fine detail); I need to keep these apart in my report.
 - An edge detector (Sobel, Canny) is a fixed filter used for evaluation after generation, not something that learns. Its advantage over the power spectrum is that it is local, so it can be restricted to sargassum regions.
 - High precision with low recall would mean realistic but narrow synthetic data, which adds little variety for Phase 4 augmentation.
+- Inference uses only a fraction of the 16 GB VRAM, but fine-tuning also has to hold gradients and optimizer states, so whether I need bigger hardware is a question for the fine-tuning stage.
+- Older research code depends on older library versions, so pinning versions is part of making my results reproducible, not just a fix to get it running.
 
 **Way forward:**
 - Use the band-agnostic and spatial metrics (PSNR, SSIM, power spectrum, edge integrity) plus FID/KID/LPIPS in the RGB phase; add SAM and FAI once NIR/SWIR are generated.
 - Record exact package versions while setting up, so the environment can be rebuilt on Linux later; my code moves across through git, but the environment doesn't.
 
 **Next steps:**
-- Prepare for running DiffusionSat on Wednesday: walk through the README setup and the single-image notebook, download the 256x256 checkpoint and check its licence, write a setup checklist.
-- Find out the university GPU computers' OS, GPU/VRAM, whether conda can be installed without admin rights, and whether files persist between sessions.
+- Save the environment's package list (pip freeze) and my first image to the repo, and write `docs/diffusionsat_setup.md`.
+- Test DiffusionSat with sargassum-relevant prompts and metadata (Caribbean coordinates, ocean scenes).
+- Find out whether local files on the lab PCs persist after logout.
 
