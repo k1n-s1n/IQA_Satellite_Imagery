@@ -217,6 +217,18 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Downloaded the DiffusionSat 256x256 checkpoint (Zenodo, CC BY 4.0) and set up a conda environment (Python 3.10, PyTorch 2.2.2 for CUDA 12.1) on a high-GPU university desktop (RTX A4000, 16 GB).
     - Needed two version pins to get the 2023 code running: numpy<2 (PyTorch 2.2.2 was built against NumPy 1.x) and huggingface_hub<0.26 (DiffusionSat's bundled diffusers 0.17 uses a function removed in later versions).
     - Generated my first DiffusionSat image with the authors' single-image notebook (256x256, 20 steps, fixed seed 42, checkpoint-150000): 1.6 s per image and 2.81 GB peak VRAM.
+    - Supervisor meeting with Dr Wei:
+        - Record how I installed the model and generated the image, in the Research Notebook, and share my lab PC work with her.
+        - MARIDA may not be enough data: look for more sargassum imagery from the Caribbean and elsewhere.
+        - Investigate how the number of training samples affects the quality of the synthetic images.
+        - Use a downstream task (segmenting the sargassum area) as one way to judge how good the synthetic images are.
+        - Put the Research Notebook on the university OneDrive or GitLab and share it from there.
+        - The C:\Temp folder on the lab PC is not safe storage: I'll email the FYP organiser about reliable storage, and Dr Wei will check with the FYP coordinator.
+        - Literature review is due mid-December.
+        - Extending the project after the placement: generate RGB sargassum images first, then increase the number of channels so the model accepts and generates more bands, then assess the generated images with my metrics and the downstream task.
+- **Fri 20 Nov:**
+    - Storage: Dr Wei confirmed my X drive is 30 GB, which won't fit the checkpoint plus datasets, so I'll apply to DTS for more space (~200 GB), copying her in.
+    - Licences: DiffusionSat's code is Apache-2.0 and its pretrained weights are CC BY 4.0, so both are open and I only need to cite them.
 
 **Reflection:**
 - I first thought SAM is just as useful with 3 bands; it still computes, but on RGB it only measures hue and misses the NIR/red-edge signal that separates sargassum from water.
@@ -226,12 +238,17 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Inference uses only a fraction of the 16 GB VRAM, but fine-tuning also has to hold gradients and optimizer states, so whether I need bigger hardware is a question for the fine-tuning stage.
 - Older research code depends on older library versions, so pinning versions is part of making my results reproducible, not just a fix to get it running.
 
+- I had assumed Apache-2.0 meant restricted access; it is a permissive open-source licence (free to use and modify, keeping the licence notice), so no paid licence is needed.
+
 **Way forward:**
 - Use the band-agnostic and spatial metrics (PSNR, SSIM, power spectrum, edge integrity) plus FID/KID/LPIPS in the RGB phase; add SAM and FAI once NIR/SWIR are generated.
 - Record exact package versions while setting up, so the environment can be rebuilt on Linux later; my code moves across through git, but the environment doesn't.
 
 **Next steps:**
-- Save the environment's package list (pip freeze) and my first image to the repo, and write `docs/diffusionsat_setup.md`.
+- Write `docs/diffusionsat_setup.md` (installation and first generation) and add it to the Research Notebook; save the package list (pip freeze), my modified notebook and first image to the repo.
+- Move the Research Notebook to the university OneDrive or GitLab and share it with Dr Wei.
+- Apply to DTS for more X drive storage (copying Dr Wei), once I have their contact details.
+- Search for more Caribbean and general sargassum imagery beyond MARIDA.
+- Read the CS3IP module lectures and plan the literature review (due mid-December).
 - Test DiffusionSat with sargassum-relevant prompts and metadata (Caribbean coordinates, ocean scenes).
-- Find out whether local files on the lab PCs persist after logout.
 

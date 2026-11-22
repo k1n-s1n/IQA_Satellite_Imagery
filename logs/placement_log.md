@@ -134,7 +134,7 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 13 Nov | Research Notebook: reviewed for sharing with Dr Wei (first person, answered questions updated) | 0.5 |
 | Fri 13 Nov | Extended `count_sargassum.py` with pixel counts from the class masks: 5,154 sargassum pixels (2,797 dense, 2,357 sparse), ~45 per sargassum patch; only ~0.9% of all pixels are labelled | 1 |
 
-## Week 4 — w/c 16 Nov 2026 — Hours: _ ( Total so far: _/225)
+## Week 4 — w/c 16 Nov 2026 — Hours: 14 ( Total so far: 55/225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
@@ -144,8 +144,11 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Wed 18 Nov | GPU access: emailed Prof Xia Hong (cc Dr Wei) and Dr Todd Jones; checked csgitlab CI runners (no GPU runners; the only instance runner is for coursework with a 10-minute job limit) | 0.5 |
 | Wed 18 Nov | Reviewed the CS compute wiki: desktop GPU specs, RACC2 GPU partitions (gpuscavenger, csgpus), storage options; Dr Jones's advice to start on desktops and log performance metrics before requesting RACC2 | 1 |
 | Wed 18 Nov | Checked a high-GPU university desktop (NVIDIA RTX A4000 16 GB, i7-13700, 32 GB RAM, Windows 11) and Anaconda (Python 3.11.7) via AppsAnywhere; decided to start DiffusionSat setup there on Windows | 0.5 |
-| Thu 19 Nov | Lab PC storage (D: too small, used a local C: folder); downloaded the DiffusionSat 256x256 checkpoint from Zenodo (30 GB, CC BY 4.0; 100k and 150k step checkpoints plus optimizer states) and inspected its structure | 1 |
-| Thu 19 Nov | DiffusionSat environment: conda env (Python 3.10) kept outside my user profile, PyTorch 2.2.2+cu121 with GPU verified, DiffusionSat and its requirements installed; fixed two version conflicts (numpy<2, huggingface_hub<0.26) | 1 |
-| Thu 19 Nov | Ran the single-image notebook: first generated image (256x256, 20 steps, seed 42, checkpoint-150000): 1.6 s per image, 2.81 GB peak VRAM | 2 |
+| Thu 19 Nov | Lab PC storage (D: too small, used a local C: folder); downloaded the DiffusionSat 256x256 checkpoint from Zenodo (30 GB, CC BY 4.0; 100k and 150k step checkpoints plus optimizer states) and inspected its structure | 1 .5 |
+| Thu 19 Nov | DiffusionSat environment: conda env (Python 3.10) kept outside my user profile, PyTorch 2.2.2+cu121 with GPU verified, DiffusionSat and its requirements installed; fixed two version conflicts (numpy<2, huggingface_hub<0.26) | 1.5 |
+| Thu 19 Nov | Ran the single-image notebook: first generated image (256x256, 20 steps, seed 42, checkpoint-150000): 1.6 s per image, 2.81 GB peak VRAM | 3 |
 | Thu 19 Nov | Supervisor meeting prep: findings, open questions and decisions | 1 |
+| Thu 19 Nov | Supervisor meeting with Dr Wei: document the DiffusionSat setup and first generation in the Research Notebook; MARIDA may not be enough, so find more Caribbean and general sargassum imagery; study how the number of training samples affects synthetic images; downstream segmentation as a quality check; share the notebook via university OneDrive or GitLab; lab PC C:\Temp storage not safe, email the FYP organiser about reliable storage; literature review due mid-December | 1 |
+| Fri 20 Nov | Storage follow-up: Dr Wei confirmed the X drive is 30 GB and can be enlarged through DTS; estimated project storage needs (~200 GB: checkpoints, datasets, generated images, fine-tuned models) and drafted the request | 0.5 |
+| Fri 20 Nov | Checked the DiffusionSat licences: code is Apache-2.0 and the Zenodo weights are CC BY 4.0, both open and free to use with citation; emailed Dr Wei about contacting DTS and her access to the Research Notebook | 0.5 |
 
