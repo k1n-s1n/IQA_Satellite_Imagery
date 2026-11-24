@@ -1,0 +1,34 @@
+# Fine-tuning memory test for DiffusionSat on the high-GPU university desktop (RTX A4000, 16 GB).
+# Random tensors of the real shapes stand in for data: memory depends on tensor shapes, not pixel content.
+# Weights are discarded; only peak VRAM and time per step are kept.
+
+# Paths on the lab PC (fill in before running)
+pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/TODO"          # folder with vae/, text_encoder/, tokenizer/, scheduler/
+unet_path: "C:/Temp/muhsin_fyp/checkpoints/TODO/checkpoint-150000"  # folder containing unet/
+hf_home: "C:/Temp/muhsin_fyp/hf_cache"
+
+# Match the authors' 256 model (launch_256_fmow_satlas_spacenet_img_txt_md.sh)
+resolution: 256
+num_metadata: 7
+learning_rate: 4.0e-6
+max_grad_norm: 1.0
+mixed_precision: fp16
+
+seed: 42
+warmup_steps: 2      # not timed (first steps include CUDA set-up)
+timed_steps: 5       # timed and included in peak memory
+output_dir: "results/finetune_memory_test"
+
+# Each run: batch size, gradient checkpointing, EMA, optimizer ("adamw" or "adamw8bit").
+# Within a group, runs stop at the first out-of-memory (larger batches would also fail).
+runs:
+  # A: main sweep, cheapest settings
+  - {group: A, batch_size: 1,  grad_checkpointing: true, ema: false, optimizer: adamw}
+  - {group: A, batch_size: 2,  grad_checkpointing: true, ema: false, optimizer: adamw}
+  - {group: A, batch_size: 4,  grad_checkpointing: true, ema: false, optimizer: adamw}
+  - {group: A, batch_size: 8,  grad_checkpointing: true, ema: false, optimizer: adamw}
+  - {group: A, batch_size: 16, grad_checkpointing: true, ema: false, optimizer: adamw}
+  # B: the authors' setup
+  - {group: B, batch_size: 16, grad_checkpointing: true, ema: true,  optimizer: adamw}
+  # C: bonus, only if bitsandbytes installs (set batch_size to the first size that failed in A)
+  - {group: C, batch_size: 16, grad_checkpointing: true, ema: false, optimizer: adamw8bit}
