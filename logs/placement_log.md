@@ -152,3 +152,11 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 20 Nov | Storage follow-up: Dr Wei confirmed the X drive is 30 GB and can be enlarged through DTS; estimated project storage needs (~200 GB: checkpoints, datasets, generated images, fine-tuned models) and drafted the request | 0.5 |
 | Fri 20 Nov | Checked the DiffusionSat licences: code is Apache-2.0 and the Zenodo weights are CC BY 4.0, both open and free to use with citation; emailed Dr Wei about contacting DTS and her access to the Research Notebook | 0.5 |
 
+
+## Week 5 — w/c 23 Nov 2026 — Hours: 3 ( Total so far: /225)
+
+| Date | Task | Hours |
+| --- | --- | --- |
+| Mon 23 Nov | Saved the first DiffusionSat run to the repo (`results/diffusionsat_first_run/`: first image, pip freeze, run notes with hardware, model and generation settings); set up one results folder per run so every output can be traced to its environment and settings | 1 |
+| Mon 23 Nov | Wrote `docs/diffusionsat_setup.md`: step-by-step environment rebuild on the high-GPU university desktop, including why the numpy<2 and huggingface_hub<0.26 pins were needed (checked against the huggingface_hub v0.26.0 release notes) | 1 |
+| Mon 23 Nov | Research Notebook: Experiments section (DiffusionSat setup and first generation: what I did, what I learned, open questions) and two decisions log entries (unet rather than unet_ema; one results folder per run) | 1 |

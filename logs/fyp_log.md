@@ -202,7 +202,7 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Set up the DiffusionSat environment on the high-GPU university computers and run the pretrained inference notebook.
 - Finish the metrics shortlist to close Phase 1 (~20 Nov).
 
-## Week 7 — 16–22 Nov 2026 (in progress)
+## Week 7 — 16–22 Nov 2026
 
 **Activities:**
 - **Mon 16 Nov:**
@@ -252,3 +252,24 @@ Detailed research notes live in the Research Notebook; this log stays short.
 - Read the CS3IP module lectures and plan the literature review (due mid-December).
 - Test DiffusionSat with sargassum-relevant prompts and metadata (Caribbean coordinates, ocean scenes).
 
+
+## Week 8 — 23–29 Nov 2026 (in progress)
+
+**Activities:**
+- **Mon 23 Nov:**
+    - Saved my first DiffusionSat run to the repo in its own results folder (first image, pip freeze, run notes), so every result can be traced back to the environment and settings that produced it. Later runs will follow the same layout.
+    - Wrote a setup guide (`docs/diffusionsat_setup.md`) so the environment can be rebuilt from scratch, for example on Linux later.
+    - Added an Experiments section to the Research Notebook (DiffusionSat setup and first generation) and logged two decisions: using the `unet` weights rather than `unet_ema`, following the authors' notebook, and one results folder per run.
+- **Tue 24 Nov:**
+    - Reviewed the CS3IP lecture slides for the literature review requirements: the draft is a mandatory formative submission in Week 12 (14–18 Dec), and the final version is criterion #3 of the report marking scheme (15 of the report's 100 marks: state of the art, critical analysis of trade-offs, and relevance to my research problem).
+
+**Reflection:**
+- A clean `pip install` does not mean the code will run: pip only checks the version ranges packages declare, not which functions the code calls. The huggingface_hub problem only appeared when Python ran the import of a function that had been removed.
+
+**Way forward:**
+- Build the literature review on what is already in my Research Notebook (paper breakdowns, metric shortlist and its five-family framework, Sentinel-2 and FAI background), then search for papers where it is thin.
+
+**Next steps:**
+- On campus (Wed): fill in the prompt and metadata in the run notes, copy my edited notebook off the lab PC, test DiffusionSat on sargassum-like prompts and metadata, and test whether fine-tuning fits in 16 GB.
+- Turn the metric framework into the literature review's section structure.
+- Apply to DTS for more X drive storage once I have their contact details.
