@@ -1,0 +1,30 @@
+# Pretrained baseline: can DiffusionSat (no fine-tuning) generate ocean / floating-algae imagery?
+# Grid: prompts x metadata conditions x seeds. Settings match results/diffusionsat_first_run unless noted.
+
+# Paths on the lab PC (same as configs/finetune_memory_test.yaml)
+pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/TODO"
+unet_path: "C:/Temp/muhsin_fyp/checkpoints/TODO/checkpoint-150000"
+hf_home: "C:/Temp/muhsin_fyp/hf_cache"
+
+resolution: 256
+num_inference_steps: 20
+guidance_scale: 7.5        # VERIFY: copy the value used in single-image.ipynb
+seeds: [0, 1, 2, 3]
+output_dir: "results/sargassum_baseline"
+
+prompts:
+  - "a satellite image of the ocean"
+  - "a satellite image of seaweed floating on the ocean"
+
+# Raw (un-normalised) metadata. Listed in the order the model expects.
+# VERIFY the order against the notebook (expected: lon, lat, gsd, cloud_cover, year, month, day).
+metadata_conditions:
+  none: null
+  caribbean:
+    lon: -64.0          # example open-water point in the central Caribbean Sea (not a MARIDA tile yet)
+    lat: 15.0
+    gsd: 10.0           # Sentinel-2 RGB resolution in metres (likely out-of-distribution)
+    cloud_cover: 0.0
+    year: 2020
+    month: 6            # June: within the main sargassum season
+    day: 15
