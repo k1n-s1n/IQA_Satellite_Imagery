@@ -18,8 +18,13 @@ prompts:
 
 # Raw (un-normalised) metadata. Listed in the order the model expects.
 # Order confirmed against single-image.ipynb: lon, lat, gsd, cloud_cover, year, month, day.
+# A condition with "normalised:" is passed to the model as-is (no metadata_normalize).
 metadata_conditions:
-  none: null
+  # "No metadata": in training, metadata was zeroed AFTER normalisation ~10% of the time
+  # (keep_mask = rand > 0.1 in DiffusionSat's training script), so all-zero normalised
+  # metadata is the model's learned "metadata dropped" input. metadata=None raises AssertionError.
+  dropped:
+    normalised: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
   caribbean:
     lon: -64.0          # example open-water point in the central Caribbean Sea (not a MARIDA tile yet)
     lat: 15.0

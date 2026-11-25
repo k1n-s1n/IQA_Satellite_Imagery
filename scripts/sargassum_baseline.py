@@ -40,8 +40,10 @@ def main():
     rows = []
     for p_idx, prompt in enumerate(cfg["prompts"]):
         for md_name, md in cfg["metadata_conditions"].items():
-            # Dict order in the YAML = order passed to the model
-            metadata = None if md is None else metadata_normalize(list(md.values())).tolist()
+            if "normalised" in md:  # already in the model's normalised space
+                metadata = [float(v) for v in md["normalised"]]
+            else:  # raw values; YAML order = order passed to the model
+                metadata = metadata_normalize(list(md.values())).tolist()
             for seed in cfg["seeds"]:
                 name = f"p{p_idx}_{md_name}_seed{seed}.png"
                 generator = torch.Generator("cuda").manual_seed(seed)
@@ -60,7 +62,7 @@ def main():
                         generator=generator,
                     ).images[0]
                     image.save(os.path.join(out_dir, name))
-                except Exception as e:  # e.g. pipeline may not accept metadata=None
+                except Exception as e:  # record the failure and continue with the grid
                     status = f"error: {type(e).__name__}: {e}"
                     name = ""
                 torch.cuda.synchronize()
