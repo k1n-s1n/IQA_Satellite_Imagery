@@ -2,13 +2,13 @@
 # Grid: prompts x metadata conditions x seeds. Settings match results/diffusionsat_first_run unless noted.
 
 # Paths on the lab PC (same as configs/finetune_memory_test.yaml)
-pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/TODO"
-unet_path: "C:/Temp/muhsin_fyp/checkpoints/TODO/checkpoint-150000"
+pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64"  # top-level pipeline: vae/, text_encoder/, tokenizer/, scheduler/
+unet_path: "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/checkpoint-150000"  # folder containing unet/
 hf_home: "C:/Temp/muhsin_fyp/hf_cache"
 
 resolution: 256
 num_inference_steps: 20
-guidance_scale: 7.5        # VERIFY: copy the value used in single-image.ipynb
+guidance_scale: 7.5        # same as single-image.ipynb
 seeds: [0, 1, 2, 3]
 output_dir: "results/sargassum_baseline"
 
@@ -17,7 +17,7 @@ prompts:
   - "a satellite image of seaweed floating on the ocean"
 
 # Raw (un-normalised) metadata. Listed in the order the model expects.
-# VERIFY the order against the notebook (expected: lon, lat, gsd, cloud_cover, year, month, day).
+# Order confirmed against single-image.ipynb: lon, lat, gsd, cloud_cover, year, month, day.
 metadata_conditions:
   none: null
   caribbean:

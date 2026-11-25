@@ -3,8 +3,8 @@
 # Weights are discarded; only peak VRAM and time per step are kept.
 
 # Paths on the lab PC (fill in before running)
-pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/TODO"          # folder with vae/, text_encoder/, tokenizer/, scheduler/
-unet_path: "C:/Temp/muhsin_fyp/checkpoints/TODO/checkpoint-150000"  # folder containing unet/
+pipeline_path: "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64"  # top-level pipeline: vae/, text_encoder/, tokenizer/, scheduler/
+unet_path: "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/checkpoint-150000"  # folder containing unet/
 hf_home: "C:/Temp/muhsin_fyp/hf_cache"
 
 # Match the authors' 256 model (launch_256_fmow_satlas_spacenet_img_txt_md.sh)

@@ -111,8 +111,8 @@ def run_one(cfg, run, shared):
 
         return {
             "status": "ok",
-            "peak_allocated_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
-            "peak_reserved_gb": round(torch.cuda.max_memory_reserved() / 1024**3, 2),
+            "peak_allocated_gib": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
+            "peak_reserved_gib": round(torch.cuda.max_memory_reserved() / 1024**3, 2),
             "sec_per_step": round(sum(step_times) / len(step_times), 3),
             "final_loss": round(loss.item(), 4),
             "error": "",
@@ -161,7 +161,7 @@ def main():
 
     os.makedirs(cfg["output_dir"], exist_ok=True)
     fields = ["group", "batch_size", "grad_checkpointing", "ema", "optimizer", "status",
-              "peak_allocated_gb", "peak_reserved_gb", "sec_per_step", "final_loss", "error"]
+              "peak_allocated_gib", "peak_reserved_gib", "sec_per_step", "final_loss", "error"]
     results, failed_groups = [], set()
 
     for run in cfg["runs"]:
@@ -182,7 +182,7 @@ def main():
 
     env = {
         "gpu": torch.cuda.get_device_name(0),
-        "gpu_total_gb": round(torch.cuda.get_device_properties(0).total_memory / 1024**3, 2),
+        "gpu_total_gib": round(torch.cuda.get_device_properties(0).total_memory / 1024**3, 2),
         "torch": torch.__version__,
         "cuda": torch.version.cuda,
         "config": cfg,

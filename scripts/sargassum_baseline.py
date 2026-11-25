@@ -25,7 +25,7 @@ def main():
 
     os.environ["HF_HOME"] = cfg["hf_home"]  # must be set before HF imports
     import torch
-    # VERIFY: these imports match the ones in single-image.ipynb
+    # Same imports as single-image.ipynb
     from diffusionsat import SatUNet, DiffusionSatPipeline, metadata_normalize
 
     out_dir = cfg["output_dir"]
@@ -68,7 +68,7 @@ def main():
                     "prompt_id": p_idx, "prompt": prompt, "metadata": md_name,
                     "seed": seed, "file": name, "status": status,
                     "time_s": round(time.perf_counter() - start, 2),
-                    "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
+                    "peak_vram_gib": round(torch.cuda.max_memory_allocated() / 1024**3, 2),
                 })
                 print(rows[-1])
 

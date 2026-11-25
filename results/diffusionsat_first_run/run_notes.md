@@ -18,8 +18,9 @@
 
 ## Generation settings
 - Notebook: `notebooks/single-image.ipynb` (edited; SD 2.1 baseline cell skipped)
-- Prompt: TODO (exact text; substation in India)
-- Metadata: TODO (if set)
+- Prompt: "a fmow satellite image of a electric substation in India" (authors' example)
+- Metadata (raw, normalised with `metadata_normalize`): [76.5712666476, 28.6965307997, 0.929417550564, 0.0765712666476, 2015, 2, 27] (lon, lat, GSD, cloud cover, year, month, day)
+- Guidance scale: 7.5
 - Resolution: 256x256
 - Inference steps: 20
 - Seed: 42 (torch generator)
@@ -27,7 +28,7 @@
 ## Results
 - Output: `first_image_seed42.png`
 - Time: 1.6 s per image
-- Peak VRAM: 2.81 GB
+- Peak VRAM: 2.81 GB (1e9 bytes) = 2.62 GiB; later scripts report GiB
 
 ## Notes
 - Inference uses well under the 16 GB available; fine-tuning (gradients + optimizer states) not yet tested.
