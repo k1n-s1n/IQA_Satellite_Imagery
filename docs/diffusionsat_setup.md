@@ -71,5 +71,6 @@ Full resulting environment: `results/diffusionsat_first_run/env_freeze.txt`.
 ## 7. Known issues and next steps
 
 - `C:\Temp` can be cleared: data, checkpoints and results to move to the X drive once DTS enlarges it; the conda env can stay local and be rebuilt from this doc
-- Edited notebook still to be copied off the lab PC
+- Edited notebook copied to the repo on 25 Nov: `notebooks/single-image.ipynb`
+- `diffusionsat` is not importable from outside the DiffusionSat folder (`ModuleNotFoundError` when running repo scripts), even though it was installed with `pip install -e`. The notebook only works because of its `sys.path.append('..')`. Workaround: `set PYTHONPATH=C:\Temp\muhsin_fyp\DiffusionSat` in the prompt before running repo scripts. Cause not yet checked (`pip show diffusionsat`).
 - Inference uses 2.81 GB peak VRAM; fine-tuning memory (gradients + optimizer states) not yet tested on the A4000

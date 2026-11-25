@@ -32,4 +32,4 @@
 
 ## Notes
 - Inference uses well under the 16 GB available; fine-tuning (gradients + optimizer states) not yet tested.
-- Edited notebook not yet copied off the lab PC (C:\Temp is not safe storage).
+- Edited notebook copied off the lab PC on 25 Nov: `notebooks/single-image.ipynb` (adapted from the DiffusionSat repo, Apache-2.0).

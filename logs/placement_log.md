@@ -153,10 +153,16 @@ Work done while vetting/authorisation was pending, recorded under the real dates
 | Fri 20 Nov | Checked the DiffusionSat licences: code is Apache-2.0 and the Zenodo weights are CC BY 4.0, both open and free to use with citation; emailed Dr Wei about contacting DTS and her access to the Research Notebook | 0.5 |
 
 
-## Week 5 — w/c 23 Nov 2026 — Hours: 3 ( Total so far: /225)
+## Week 5 — w/c 23 Nov 2026 — Hours: 10 ( Total so far: /225)
 
 | Date | Task | Hours |
 | --- | --- | --- |
 | Mon 23 Nov | Saved the first DiffusionSat run to the repo (`results/diffusionsat_first_run/`: first image, pip freeze, run notes with hardware, model and generation settings); set up one results folder per run so every output can be traced to its environment and settings | 1 |
 | Mon 23 Nov | Wrote `docs/diffusionsat_setup.md`: step-by-step environment rebuild on the high-GPU university desktop, including why the numpy<2 and huggingface_hub<0.26 pins were needed (checked against the huggingface_hub v0.26.0 release notes) | 1 |
 | Mon 23 Nov | Research Notebook: Experiments section (DiffusionSat setup and first generation: what I did, what I learned, open questions) and two decisions log entries (unet rather than unet_ema; one results folder per run) | 1 |
+| Tue 24 Nov | Studied the authors' launch script for the 256 model to plan fine-tuning: fp16, batch size 16, gradient checkpointing, EMA, learning rate 4e-6, 7 metadata values, SNR gamma 5; only the UNet is trained. Training data must be webdataset shards and the preprocessing is hard-wired to fMoW/SpaceNet/Satlas, so MARIDA will need converting (bands to RGB, captions and metadata, webdataset) | 1 |
+| Tue 24 Nov | Designed and wrote a fine-tuning memory test (`configs/finetune_memory_test.yaml`, `scripts/finetune_memory_test.py`): random tensors of the real shapes, one training step mirroring the authors' script, a batch-size sweep (1–16) stopping at the first out-of-memory, the authors' setup with EMA, and an 8-bit Adam option; records peak memory and time per step | 1 |
+| Wed 25 Nov | Designed and wrote a pretrained baseline test for sargassum-like generation (`configs/sargassum_baseline.yaml`, `scripts/sargassum_baseline.py`): 2 prompts (ocean / seaweed floating on the ocean) × 2 metadata conditions × 4 seeds, saving each image plus time and peak VRAM per image | 2 |
+| Wed 25 Nov | On the high-GPU university desktop: set up the updated repo, filled in the checkpoint paths from my notebook, and fixed a `ModuleNotFoundError` for `diffusionsat` by setting `PYTHONPATH` (the notebook only worked because of its `sys.path.append('..')`) | 1 |
+| Wed 25 Nov | Ran the fine-tuning memory test: no run raised an out-of-memory error, but every run exceeded the card's 15.99 GiB (17.3 GiB at batch size 1, 20.6 GiB for the authors' batch 16 + EMA setup). Confirmed in Task Manager that the overflow spilled into shared system memory (up to 7.1 GB during the authors' setup), so the timings are not true GPU speeds. 8-bit Adam skipped (bitsandbytes not installed) | 1 |
+| Wed 25 Nov | Ran the sargassum baseline. Run 1: `metadata=None` raised an AssertionError. Found in the training script that metadata was zeroed after normalisation ~10% of the time, so I used all-zero normalised metadata as the "dropped" condition (run 2). Caribbean metadata mostly produced harbours/coastlines; dropped metadata produced open water in 3/4 seeds; the seaweed prompt failed under both. Same seeds gave identical images across runs | 1 |

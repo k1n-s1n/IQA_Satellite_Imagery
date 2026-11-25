@@ -1,0 +1,8 @@
+group,batch_size,grad_checkpointing,ema,optimizer,status,peak_allocated_gib,peak_reserved_gib,sec_per_step,final_loss,error
+A,1,True,False,adamw,ok,17.31,17.52,2.012,0.2139,
+A,2,True,False,adamw,ok,17.31,17.54,2.529,0.2017,
+A,4,True,False,adamw,ok,17.32,17.54,3.231,0.2203,
+A,8,True,False,adamw,ok,17.34,17.57,5.857,0.3743,
+A,16,True,False,adamw,ok,17.33,18.8,12.317,0.2565,
+B,16,True,True,adamw,ok,20.64,22.14,22.084,0.26,
+C,16,True,False,adamw8bit,skipped,,,,,ImportError: No module named 'bitsandbytes'

@@ -1,0 +1,71 @@
+{
+  "gpu": "NVIDIA RTX A4000",
+  "gpu_total_gib": 15.99,
+  "torch": "2.2.2+cu121",
+  "cuda": "12.1",
+  "config": {
+    "pipeline_path": "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64",
+    "unet_path": "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/checkpoint-150000",
+    "hf_home": "C:/Temp/muhsin_fyp/hf_cache",
+    "resolution": 256,
+    "num_metadata": 7,
+    "learning_rate": 4e-06,
+    "max_grad_norm": 1.0,
+    "mixed_precision": "fp16",
+    "seed": 42,
+    "warmup_steps": 2,
+    "timed_steps": 5,
+    "output_dir": "results/finetune_memory_test",
+    "runs": [
+      {
+        "group": "A",
+        "batch_size": 1,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "A",
+        "batch_size": 2,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "A",
+        "batch_size": 4,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "A",
+        "batch_size": 8,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "A",
+        "batch_size": 16,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "B",
+        "batch_size": 16,
+        "grad_checkpointing": true,
+        "ema": true,
+        "optimizer": "adamw"
+      },
+      {
+        "group": "C",
+        "batch_size": 16,
+        "grad_checkpointing": true,
+        "ema": false,
+        "optimizer": "adamw8bit"
+      }
+    ]
+  }
+}

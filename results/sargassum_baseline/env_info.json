@@ -1,0 +1,46 @@
+{
+  "gpu": "NVIDIA RTX A4000",
+  "torch": "2.2.2+cu121",
+  "cuda": "12.1",
+  "config": {
+    "pipeline_path": "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64",
+    "unet_path": "C:/Temp/muhsin_fyp/checkpoints/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/finetune_sd21_256_sn-satlas-fmow_snr5_md7norm_bs64/checkpoint-150000",
+    "hf_home": "C:/Temp/muhsin_fyp/hf_cache",
+    "resolution": 256,
+    "num_inference_steps": 20,
+    "guidance_scale": 7.5,
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "output_dir": "results/sargassum_baseline",
+    "prompts": [
+      "a satellite image of the ocean",
+      "a satellite image of seaweed floating on the ocean"
+    ],
+    "metadata_conditions": {
+      "dropped": {
+        "normalised": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "caribbean": {
+        "lon": -64.0,
+        "lat": 15.0,
+        "gsd": 10.0,
+        "cloud_cover": 0.0,
+        "year": 2020,
+        "month": 6,
+        "day": 15
+      }
+    }
+  }
+}

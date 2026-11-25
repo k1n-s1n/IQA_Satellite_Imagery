@@ -262,14 +262,24 @@ Detailed research notes live in the Research Notebook; this log stays short.
     - Added an Experiments section to the Research Notebook (DiffusionSat setup and first generation) and logged two decisions: using the `unet` weights rather than `unet_ema`, following the authors' notebook, and one results folder per run.
 - **Tue 24 Nov:**
     - Reviewed the CS3IP lecture slides for the literature review requirements: the draft is a mandatory formative submission in Week 12 (14–18 Dec), and the final version is criterion #3 of the report marking scheme (15 of the report's 100 marks: state of the art, critical analysis of trade-offs, and relevance to my research problem).
+- **Wed 25 Nov:**
+    - Wrote a pretrained baseline test to see whether DiffusionSat can generate ocean/sargassum-like images with no fine-tuning: 2 prompts × 2 metadata conditions × 4 seeds. I used 4 seeds so that a failure can be told apart from one unlucky sample.
+    - Ran the fine-tuning memory test on the high-GPU university desktop. Every configuration needed more than the 16 GB card has, even at batch size 1, but nothing crashed: Windows spilled the overflow into system RAM instead, which I confirmed in Task Manager.
+    - Ran the baseline twice. The pipeline rejects `metadata=None`, so I checked the training script and used all-zero normalised metadata, which is what the model saw when metadata was dropped during training. With Caribbean metadata the model mostly drew harbours and coastlines at a very fine resolution; with dropped metadata it produced open water in 3 of 4 seeds. The "seaweed" prompt produced nothing sargassum-like either way.
 
 **Reflection:**
 - A clean `pip install` does not mean the code will run: pip only checks the version ranges packages declare, not which functions the code calls. The huggingface_hub problem only appeared when Python ran the import of a function that had been removed.
+- No crash does not mean it fits. I designed the memory test to stop at the first out-of-memory error, but Windows quietly used system RAM instead, so I had to check the peak memory against the card's capacity rather than trust the absence of an error.
+- My Caribbean condition changed location and GSD (10 m) at the same time, so I can't yet say which one pushed the model towards harbours. To find out I need to change one variable at a time.
 
 **Way forward:**
 - Build the literature review on what is already in my Research Notebook (paper breakdowns, metric shortlist and its five-family framework, Sentinel-2 and FAI background), then search for papers where it is thin.
+- Fine-tuning the authors' setup on a 16 GB card is not realistic without memory savings (e.g. 8-bit Adam) or a bigger GPU; raise this with my supervisor.
+- The pretrained model cannot produce sargassum, which supports fine-tuning on MARIDA as the next step.
 
 **Next steps:**
-- On campus (Wed): fill in the prompt and metadata in the run notes, copy my edited notebook off the lab PC, test DiffusionSat on sargassum-like prompts and metadata, and test whether fine-tuning fits in 16 GB.
+- Thursday meeting: present the memory test and baseline results; ask about hardware for fine-tuning.
+- Write up both experiments in the Research Notebook and the run folders.
+- Check in Khanna et al. (2024) whether DiffusionSat's Satlas training data included Sentinel-2 (10 m) imagery.
 - Turn the metric framework into the literature review's section structure.
 - Apply to DTS for more X drive storage once I have their contact details.

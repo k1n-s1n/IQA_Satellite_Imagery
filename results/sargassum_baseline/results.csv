@@ -1,0 +1,17 @@
+prompt_id,prompt,metadata,seed,file,status,time_s,peak_vram_gib
+0,a satellite image of the ocean,dropped,0,p0_dropped_seed0.png,ok,1.1,2.61
+0,a satellite image of the ocean,dropped,1,p0_dropped_seed1.png,ok,0.67,2.61
+0,a satellite image of the ocean,dropped,2,p0_dropped_seed2.png,ok,0.67,2.61
+0,a satellite image of the ocean,dropped,3,p0_dropped_seed3.png,ok,0.69,2.61
+0,a satellite image of the ocean,caribbean,0,p0_caribbean_seed0.png,ok,0.79,2.61
+0,a satellite image of the ocean,caribbean,1,p0_caribbean_seed1.png,ok,0.81,2.61
+0,a satellite image of the ocean,caribbean,2,p0_caribbean_seed2.png,ok,0.77,2.61
+0,a satellite image of the ocean,caribbean,3,p0_caribbean_seed3.png,ok,0.72,2.61
+1,a satellite image of seaweed floating on the ocean,dropped,0,p1_dropped_seed0.png,ok,0.71,2.61
+1,a satellite image of seaweed floating on the ocean,dropped,1,p1_dropped_seed1.png,ok,0.68,2.61
+1,a satellite image of seaweed floating on the ocean,dropped,2,p1_dropped_seed2.png,ok,0.74,2.61
+1,a satellite image of seaweed floating on the ocean,dropped,3,p1_dropped_seed3.png,ok,0.79,2.61
+1,a satellite image of seaweed floating on the ocean,caribbean,0,p1_caribbean_seed0.png,ok,0.76,2.61
+1,a satellite image of seaweed floating on the ocean,caribbean,1,p1_caribbean_seed1.png,ok,0.8,2.61
+1,a satellite image of seaweed floating on the ocean,caribbean,2,p1_caribbean_seed2.png,ok,0.76,2.61
+1,a satellite image of seaweed floating on the ocean,caribbean,3,p1_caribbean_seed3.png,ok,0.77,2.61
